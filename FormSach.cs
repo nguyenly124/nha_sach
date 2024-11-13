@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using NhaSach; // Đảm bảo bạn đã thêm thư viện NhaSach đúng
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HETHONG
@@ -16,25 +11,51 @@ namespace HETHONG
         {
             InitializeComponent();
         }
-        ketnoi kn = new ketnoi();
+
+        Ketnoidb kn = new Ketnoidb();
+
         private void btthem_Click(object sender, EventArgs e)
         {
-
+            // Thêm mã xử lý cho button "Thêm"
         }
-        private void Form1_Load(object sender, EventArgs e)
+
+        private void FormSach_Load(object sender, EventArgs e)
         {
             getData();
         }
+
         public void getData()
         {
-            string query = "select * from sach";
-            DataSet ds = kn.LayDuLieu(query);
-            hienthisach.DataSource = ds.Tables[0];
+            try
+            {
+                string query = "select * from sach";
+                DataSet ds = kn.LayDuLieu(query);
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    hienthisach.DataSource = ds.Tables[0]; // Gán dữ liệu vào DataGridView
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu để hiển thị.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            // Xử lý sự kiện click của label2
         }
+
+        private void bthoat_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Đóng form khi click nút "Thoát"
+        }
+
+        
     }
 }

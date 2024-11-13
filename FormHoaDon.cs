@@ -16,5 +16,15 @@ namespace HETHONG
         {
             InitializeComponent();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btthoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
